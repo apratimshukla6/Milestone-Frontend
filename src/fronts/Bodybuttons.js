@@ -198,6 +198,7 @@ export default function Bodybuttons(props)
 {
   const [open, setOpen] = React.useState(false);
   const [openAdd, setOpenAdd] = React.useState(false);
+  const [openEdit, setOpenEdit] = React.useState(false);
   const [selectedDate, handleDateChange] = React.useState(new Date());
 
   const handleClickOpen = () => {
@@ -214,6 +215,13 @@ export default function Bodybuttons(props)
     setOpenAdd(false);
   };
 
+  const handleClickOpenEdit = () => {
+    setOpenEdit(true);
+  };
+  const handleCloseEdit = () => {
+    setOpenEdit(false);
+  };
+
     const classes=useStyles();
     return(
         <Grid container spacing={0} className={classes.grid}>
@@ -222,7 +230,7 @@ export default function Bodybuttons(props)
                <Button elevation={0} className={classes.button1}>Predict</Button>
                <Button variant="outlined" elevation={0} color="primary" className={classes.button2}>View Correspondence</Button>
                <Button variant="outlined" elevation={0} color="primary" className={classes.button3} onClick={handleClickOpenAdd}>+ Add</Button>
-               <Button variant="outlined" elevation={0} color="primary" className={classes.button2}>
+               <Button variant="outlined" elevation={0} color="primary" className={classes.button2} onClick={handleClickOpenEdit}>
                   <img src={edit} style={{marginRight:'0.4vh'}}></img>
                    Edit
                </Button>
@@ -308,21 +316,64 @@ export default function Bodybuttons(props)
                   </Typography>
                 </DialogContent>
                 <DialogActions>
-                <Button autoFocus onClick={handleClose} style={{height: '4vh', color: '#14AFF1'}}>
+                <Button autoFocus onClick={handleCloseAdd} style={{height: '4vh', color: '#14AFF1'}}>
                     Cancel
                 </Button>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <Button autoFocus onClick={handleClose} variant="outlined" color="primary" style={{height: '4vh', color: 'white'}}>
+                <Button autoFocus onClick={handleCloseAdd} variant="outlined" color="primary" style={{height: '4vh', color: 'white'}}>
                     Clear
                   </Button>
-                  <Button autoFocus onClick={handleClose} className={classes.button1}>
+                  <Button autoFocus onClick={handleCloseAdd} className={classes.button1}>
                     Add
                   </Button>
                 </DialogActions>
             </Dialog>
+
+
+            <Dialog onClose={handleCloseEdit} aria-labelledby="customized-dialog-title" open={openEdit}>
+                <DialogTitle id="customized-dialog-title" onClose={handleCloseEdit}>
+                Edit Invoice
+                </DialogTitle>
+                <DialogContent dividers>
+                  <Typography gutterLeft>
+                  <form noValidate autoComplete="off">
+                    <span>Invoice Amount </span>
+                    <CssTextField
+                    className={classes.margin}
+                    variant="outlined"
+                    id="custom-css-outlined-input"
+                    size="small" />
+                    <br />
+
+                    <span>Notes </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <CssBigTextField 
+                    className={classes.margin}
+                    variant="outlined"
+                    id="custom-css-outlined-input"
+                    size="small" />
+                  </form>
+                  </Typography>
+                  <Typography gutterRight>
+                  </Typography>
+                </DialogContent>
+                <DialogActions>
+                <Button autoFocus onClick={handleCloseEdit} style={{height: '4vh', color: '#14AFF1'}}>
+                    Cancel
+                </Button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <Button autoFocus onClick={handleCloseEdit} variant="outlined" color="primary" style={{height: '4vh', color: 'white'}}>
+                    Reset
+                  </Button>
+                  <Button autoFocus onClick={handleCloseEdit} className={classes.button1}>
+                    Save
+                  </Button>
+                </DialogActions>
+            </Dialog>
+
+
                <paper className={classes.root}>
                  <InputBase
                   className={classes.input}
