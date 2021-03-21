@@ -7,7 +7,7 @@ import { Typography } from '@material-ui/core';
 const useStyles = makeStyles(theme =>({
     first:{
         backgroundColor: '#39495E',
-        borderRadius:0,
+        borderRadius: '0px',
         color:'rgba(255, 255, 255, 1)',
         justifyContent: 'left'
     },
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme =>({
           <React.Fragment>
             <Grid container spacing={0}>
               <Grid item xs={12}>
-                <Paper elevation={0} className={classes.first} style={{paddingTop:'3vh',paddingLeft:'2vh',fontSize:'2vh',paddingBottom:'3vh'}}>
+                <Paper elevation={0} className={classes.first} style={{paddingTop:'3vh',paddingLeft:'2vh',fontSize:'2vh',paddingBottom:'3vh', color:'white'}}>
                   <Typography className={classes.typo}
                     align='left'>
                       Invoice list
