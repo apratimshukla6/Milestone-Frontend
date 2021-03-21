@@ -18,6 +18,8 @@ import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
 import TextField from '@material-ui/core/TextField';
 import { DatePicker, KeyboardDatePicker } from "@material-ui/pickers";
+import axios from 'axios';
+
 
 const CssTextField = withStyles({
   root: {
@@ -201,6 +203,8 @@ export default function Bodybuttons(props)
   const [openEdit, setOpenEdit] = React.useState(false);
   const [selectedDate, handleDateChange] = React.useState(new Date());
 
+  const addUrl = `http://localhost:8080/Summer_Internship_Backend/add_url_endpoint_here`;
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -220,6 +224,16 @@ export default function Bodybuttons(props)
   };
   const handleCloseEdit = () => {
     setOpenEdit(false);
+  };
+
+  const addClick = () => {
+    axios.get(addUrl)
+    .then((response) => {
+        console.log(response);
+    })
+    .catch((error) => {
+        console.log(error)
+    })
   };
 
     const classes=useStyles();
@@ -326,7 +340,7 @@ export default function Bodybuttons(props)
                 <Button autoFocus onClick={handleCloseAdd} variant="outlined" color="primary" style={{height: '4vh', color: 'white'}}>
                     Clear
                   </Button>
-                  <Button autoFocus onClick={handleCloseAdd} className={classes.button1}>
+                  <Button autoFocus onClick={handleCloseAdd} className={classes.button1} onClick={addClick}>
                     Add
                   </Button>
                 </DialogActions>
