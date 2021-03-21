@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-import {CircularProgress, TableBody, TableCell, TableHead, TableRow} from '@material-ui/core'
+import {CircularProgress, TableBody, TableCell, TableHead, TableRow, Checkbox} from '@material-ui/core'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 export default function App() 
@@ -27,7 +27,7 @@ axios
 console.log("After axios " ,pageCount);
 
 return (
-<div id="scrollableDiv" style={{overflow: `scroll`, display:`flex`, height: `100vh`, width:`100vw`}}>
+<div id="scrollableDiv" style={{overflowY: `scroll`, display:`flex`, height: `70vh`, width:`100vw`, overflowX: 'none', borderRadius: '0px'}}>
 <InfiniteScroll
         dataLength={responseData.length}
         next={loadMoreData}
@@ -44,6 +44,13 @@ return (
     <TableHead>
         <TableRow>
             <TableCell>
+            <Checkbox
+              value="checkedA"
+              color="primary"
+              inputProps={{ 'aria-label': 'Checkbox A' }}
+            />
+            </TableCell>
+            <TableCell>
               Customer Name
             </TableCell>
             <TableCell>
@@ -58,11 +65,27 @@ return (
             <TableCell>
               Due Date
             </TableCell>
+            <TableCell>
+              Predicted Payment Date
+            </TableCell>
+            <TableCell>
+              Predicted Aging Bucket
+            </TableCell>
+            <TableCell>
+              Notes
+            </TableCell>
         </TableRow>
     </TableHead>
     <TableBody>
 {responseData.map((response)=>(
   <TableRow>
+    <TableCell>
+    <Checkbox
+      value="checkedA"
+      color="primary"
+      inputProps={{ 'aria-label': 'Checkbox A' }}
+    />
+    </TableCell>
     <TableCell>
         {response.name_customer}
     </TableCell>
@@ -78,8 +101,55 @@ return (
     <TableCell>
         {response.due_in_date}
     </TableCell>
+    <TableCell>
+        {'--'}
+    </TableCell>
+    <TableCell>
+        {'--'}
+    </TableCell>
+    <TableCell>
+        {response.due_in_date}
+    </TableCell>
   </TableRow>
 ))}
+
+
+{/*<TableRow>
+    <TableCell>
+    <Checkbox
+      value="checkedA"
+      color="primary"
+      inputProps={{ 'aria-label': 'Checkbox A' }}
+    />
+    </TableCell>
+    <TableCell>
+        test
+    </TableCell>
+    <TableCell>
+        lol
+    </TableCell>
+    <TableCell>
+        123
+    </TableCell>
+    <TableCell>
+        456
+    </TableCell>
+    <TableCell>
+        789
+    </TableCell>
+    <TableCell>
+        {'--'}
+    </TableCell>
+    <TableCell>
+        {'--'}
+    </TableCell>
+    <TableCell>
+        {'--'}
+    </TableCell>
+</TableRow>*/}
+
+
+
         </TableBody>
         </InfiniteScroll>
     </div>

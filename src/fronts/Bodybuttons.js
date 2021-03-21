@@ -15,19 +15,21 @@ const useStyles = makeStyles(theme =>({
       backgroundColor: '#273D49CC',
       borderRadius:'1vh',
       display:'flex',
-      width:'98vw',
+      width:'97vw',
       marginLeft:'2vh',
     },
     paper1:{
       backgroundColor: '#273D49CC',
       borderRadius:'1vh',
       display:'flex',
-      width:'98vw',
+      width:'97vw',
       marginLeft:'2vh',
       align:'center'
     },
     grid:{
-      backgroundColor:'#39495E'
+      backgroundColor:'#39495E',
+      height: '100%',
+      margin: '0'
     },
     root: {
       display: "flex",
@@ -57,7 +59,7 @@ const useStyles = makeStyles(theme =>({
     },
     button3:{
       marginLeft:'auto',marginTop:'2vh',marginBottom:'2vh',textTransform: 'none',color:'#FFFFFF',borderColor:'#14AFF1',height:'4vh'
-    }
+    },
         
 }));
 function Bodybuttons(props)
